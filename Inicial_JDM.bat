@@ -24,23 +24,29 @@ echo [i] Comprobando actualizaciones de Winget...
 winget upgrade --id Microsoft.Winget -e --silent --accept-source-agreements >nul 2>&1
 echo ---------------------------------------------------
 
+:: -- Lista de Aplicaciones --
+set "Navegadores=Google.Chrome Brave.Brave"
+set "Utilidades=RARLab.WinRAR VideoLAN.VLC"
+set "Mapas=Google.EarthPro"
+set "Remoto=RustDesk.RustDesk WireGuard.WireGuard"
 
-set apps=RARLab.WinRAR VideoLAN.VLC Google.EarthPro RustDesk.RustDesk WireGuard.WireGuard Google.Chrome Brave.Brave 
+set "apps=%Navegadores% %Utilidades% %Mapas% %Remoto%"
 
+:: --- BUCLE DE INSTALACION ---
 for %%a in (%apps%) do (
     echo.
-    echo [?] Preparando: %%a
+    echo [?] Proximo: %%a
+
     
-    :: Llamada a la funcion de espera y decision
-    call :contador
+    choice /c SC /n /t 5 /d S /m "Deseas instalar? [S] Si | [C] Saltar:"
     
-    :: Si el errorlevel de CHOICE es 2 (seleccionó 'C'), saltamos la instalacion
+    :: Usamos IF de una sola linea para evitar el error de parentesis "was unexpected"
     if errorlevel 2 (
-        echo     [SALTADO] Se ha cancelado la instalacion de %%a.
+        echo     [SALTADO] Se ha omitido %%a.
     ) else (
-        echo [i] Procesando %%a...
+        echo [i] Instalando %%a...
         winget install --id %%a -e --silent --accept-source-agreements --accept-package-agreements --no-upgrade >nul
-        if %errorlevel% equ 0 (echo     [OK]) else (echo     [SALTADO/YA EXISTE])
+        if %errorlevel% equ 0 (echo     [OK]) else (echo     [ERROR/EXISTE])
     )
     echo ---------------------------------------------------
 )
@@ -71,15 +77,10 @@ goto :eof
 :show_banner_exito
 echo.
 echo ---------------------------------------------------
-echo [+] >>Jchock93<<: Proceso finalizado con exito.
+echo [+] Jchock93<<: Proceso finalizado con exito.
 echo ---------------------------------------------------
 echo.
 goto :eof
 
 
 :: --- SECCION DE FUNCIONES ESPECIALES ---
-:contador
-:: /T 5 espera 5 segundos. /D S elige 'S' por defecto.
-choice /c SC /n /t 5 /d S /m "instalar programa? [S] Si (5s) | [C] Cancelar y Saltar:"
-:: No es necesario el goto :eof aqui porque CHOICE gestiona el errorlevel directamente
-goto :eof
