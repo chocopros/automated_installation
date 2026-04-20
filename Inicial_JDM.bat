@@ -145,6 +145,13 @@ echo [+] Usuario Actual  : %USERNAME%
 for /f "tokens=2 delims==" %%a in ('wmic computersystem get model /value ^| find "="') do set "pc_modelo=%%a"
 echo [+] Modelo de PC    : %pc_modelo%
 
+:: Obenter Procesador
+for /f "tokens=2 delims==" %%a in ('wmic cpu get name /value ^| findstr "="') do (
+    set "cpu_raw=%%a"
+)
+set "procesador=%cpu_raw%"
+echo [+] Procesador: %procesador%
+
 :: Mostrar la IP que obtuvimos antes
 echo [+] Direccion IP    : %mi_ip%
 echo ===================================================
