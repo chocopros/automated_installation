@@ -14,8 +14,16 @@ pause >nul
 
 :: --- Proceso de Instalacion ---
 call :show_banner
-echo [+] INSTALANDO SOFTWARE (Por favor, espera...)
+echo [+] PREPARANDO ENTORNO...
+:: Actualizar la base de datos de Winget
+echo [i] Actualizando fuentes de Winget...
+winget source update >nul 2>&1
+
+:: Opcional: Actualizar el propio Winget (si hay una versión nueva disponible)
+echo [i] Comprobando actualizaciones de Winget...
+winget upgrade --id Microsoft.Winget -e --silent --accept-source-agreements >nul 2>&1
 echo ---------------------------------------------------
+
 
 set apps=RARLab.WinRAR VideoLAN.VLC Google.EarthPro RustDesk.RustDesk WireGuard.WireGuard Google.Chrome Brave.Brave 
 

@@ -9,6 +9,7 @@ Este es un script de automatización basado en **Batch** diseñado para agilizar
 ## 🛠️ Características
 
 * **Elevación de Privilegios:** Solicita automáticamente permisos de administrador si no se están ejecutando.
+* **Auto-Actualización de Fuentes:** El script ejecuta un `winget source update` al inicio para asegurar que se descarguen las versiones más recientes y estables de cada programa.
 * **Instalación Silenciosa:** Utiliza flags `--silent` para evitar ventanas de confirmación molestas.
 * **Sistema de Confirmación:** Antes de cada instalación, el script otorga un margen de **5 segundos**. Puedes presionar `C` para saltar esa aplicación específica o dejar que continúe automáticamente.
 * **Banner Personalizado:** Interfaz visual limpia en la terminal con colores y arte ASCII.
