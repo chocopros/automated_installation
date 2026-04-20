@@ -37,10 +37,9 @@ for %%a in (%apps%) do (
     echo.
     echo [?] Proximo: %%a
 
-    
     choice /c SC /n /t 5 /d S /m "Deseas instalar? [S] Si | [C] Saltar:"
     
-    :: Usamos IF de una sola linea para evitar el error de parentesis "was unexpected"
+    :: En tal caso de pasar algo
     if errorlevel 2 (
         echo     [SALTADO] Se ha omitido %%a.
     ) else (
