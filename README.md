@@ -1,4 +1,8 @@
-# 🚀 Jchock93 Auto-Installer (v2.5)
+# 🚀 Jchock93 Auto-Installer (v1.0)
+
+## Fecha de ultima actualizacion
+
+    04/20/2026 11:32 AM
 
 Este es un script de automatización basado en **Batch** diseñado para agilizar la configuración de entornos Windows post-formateo. Utiliza el administrador de paquetes oficial de Microsoft, **Winget**, para instalar software de forma desatendida y silenciosa. El objetivo que fue creado este scrip es para facilitar primeramente la instalacion de programas de manera automatica, ayudando a los ingenieros y agilizando tiempos
 
